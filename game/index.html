@@ -46,6 +46,30 @@
     leftFoot.position.set(-75,-125,0);
     avatar.add(leftFoot);
     
+document.addEventListener('keydown', teclaApretada);
+
+function teclaApretada(e) {
+let codigo = e.code;
+if (codigo == 'KeyA'){
+avatar.position.z += 5;
+}
+if (codigo== 'KeyQ'){
+avatar.position.z -= 5;
+
+}
+if (codigo == 'KeyO'){
+avatar.position.x += 5;
+}
+    if (codigo == 'KeyI'){
+avatar.position.x -= 5;
+}
+    if (codigo == "KeyC"){
+        isCartWheeling = !isCartWheeling;
+        
+    }
+     if (codigo == "KeyG"){
+        girodiferente = !girodiferente;
+}}
 function animate() {
 requestAnimationFrame(animate);
 avatar.rotation.z = avatar.rotation.z + 0.05;
