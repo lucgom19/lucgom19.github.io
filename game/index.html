@@ -46,6 +46,33 @@
     leftFoot.position.set(-75,-125,0);
     avatar.add(leftFoot);
     
+    function makeTreeat(x,z){
+        var tronco= new THREE.CylinderGeometry(50,50,200);
+        var textura = new THREE.MeshBasicMaterial({color : " sienna"})
+         var tronco_sienna = new THREE.Mesh(tronco, textura);
+        
+    var copa = new THREE.SphereGeometry(150)
+    var textura_copa = new THREE.MeshBasicMaterial({color:"forestgreen"});
+    var copa_textura = new THREE.Mesh(copa, textura_copa);
+    
+    copa_textura.position.y=175;
+    tronco_sienna.add(copa_textura);
+    tronco_sienna.position.set(x, -75, z);
+    scene.add(tronco_sienna);
+    }
+    
+   
+    
+    function crearArbolesAleatorios(cantidad) {
+        for (var i = 1; i< cantidad; i++){
+        makeTreeat((Math.random()* 5000)-2500,-Math.random()* 5000);
+        }
+    }
+    
+
+    
+    
+    
 document.addEventListener('keydown', teclaApretada);
 
 function teclaApretada(e) {
