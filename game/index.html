@@ -49,8 +49,8 @@
     
     function makeTreeat(x,z){
         var tronco= new THREE.CylinderGeometry(50,50,200);
-        var textura = new THREE.MeshBasicMaterial({color : " sienna"})
-        var tronco_sienna = new THREE.Mesh(tronco, textura);
+        var textura = new THREE.MeshBasicMaterial({color : "sienna"})
+        var tronco_sienna= new THREE.Mesh(tronco, textura);
         
         var copa = new THREE.SphereGeometry(150)
         var textura_copa = new THREE.MeshBasicMaterial({color:"forestgreen"});
@@ -72,10 +72,18 @@
     
     //makeTreeat(0,0);
     crearArbolesAleatorios(100);
+    
+    function crearCampoAleatorio(numArboles) {
+        for(var i =0; i< numArboles; i ++){
+            var x = Math.random()*1000;
+            var z = Math.random()*1000;
+            makeTreeat(x,z);
+        }
+    }
+    
+   
+    
 
-    
-    
-    
 document.addEventListener('keydown', teclaApretada);
 
 function teclaApretada(e) {
