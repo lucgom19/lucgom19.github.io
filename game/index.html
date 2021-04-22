@@ -25,7 +25,10 @@
     var cover = new THREE.MeshNormalMaterial(flat);
     var avatar= new THREE.Mesh(body, cover);
     
-    scene.add(avatar);
+    var marcador = new THREE.Object3D();
+    scene.add(marcador);
+    //scene.add(avatar);
+    marcador.add(avatar);
     
     
     var hand = new THREE.SphereGeometry(50);
@@ -47,7 +50,9 @@
     var leftFoot = new THREE.Mesh(foot,cover );
     leftFoot.position.set(-75,-125,0);
     avatar.add(leftFoot);
-    camera.lookAt(avatar.position);
+    
+    marcador.add(camera);
+   // camera.lookAt(avatar.position);
     
     function makeTreeat(x,z){
         var tronco= new THREE.CylinderGeometry(50,50,200);
@@ -91,17 +96,17 @@ document.addEventListener('keydown', teclaApretada);
 function teclaApretada(e) {
 let codigo = e.code;
 if (codigo == 'KeyA'){
-avatar.position.z += 5;
+marcador.position.z += 5;
 }
 if (codigo== 'KeyQ'){
-avatar.position.z -= 5;
+marcador.position.z -= 5;
 
 }
 if (codigo == 'KeyO'){
-avatar.position.x += 5;
+marcador.position.x += 5;
 }
     if (codigo == 'KeyI'){
-avatar.position.x -= 5;
+marcador.position.x -= 5;
 }
     if (codigo == "KeyC"){
         isCartWheeling = !isCartWheeling;
