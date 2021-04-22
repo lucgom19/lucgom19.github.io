@@ -10,8 +10,8 @@
   // The "camera" is what sees the stuff:
   var aspectRatio = window.innerWidth / window.innerHeight;
   var camera = new THREE.PerspectiveCamera(75, aspectRatio, 1, 10000);
-  camera.position.z = 5000;
-  camera.position.y = 2000;
+  camera.position.z = 2500;
+  camera.position.y = 1500;
   scene.add(camera);
 
   // The "renderer" draws what the camera sees onto the screen:
@@ -26,6 +26,7 @@
     var avatar= new THREE.Mesh(body, cover);
     
     scene.add(avatar);
+    
     
     var hand = new THREE.SphereGeometry(50);
     
@@ -46,6 +47,7 @@
     var leftFoot = new THREE.Mesh(foot,cover );
     leftFoot.position.set(-75,-125,0);
     avatar.add(leftFoot);
+    camera.lookAt(avatar.position);
     
     function makeTreeat(x,z){
         var tronco= new THREE.CylinderGeometry(50,50,200);
@@ -62,27 +64,27 @@
         scene.add(tronco_sienna);
     }
     
-   
     
-    function crearArbolesAleatorios(cantidad) {
-        for (var i = 1; i< cantidad; i++){
-            makeTreeat((Math.random()* 5000)-2500,-Math.random()* 5000);
-        }
+  function crearFilaArboles(z, minimo_x, maximo_x, paso_x){
+      var minimo_x = -5000;
+      var maximo_x = 5000;
+      var paso_x = 1000;
+      for (var x = minimo_x; x< maximo_x; x =x+paso_x) {
+      makeTreeat(x,z);
+       }
+   }
+   function crearCampoArboles(minimo_x, minimo_z, maximo_x, maximo_z, paso){
+       
+       var paso = 1000;
+       var minimo_z = -5000;
+       var maximo_z = 5000;
+        for(var z= minimo_z; z< maximo_z; z=z+paso){
+             crearFilaArboles(z, minimo_x, maximo_x, paso);
+            
+                    } 
     }
-    
-    //makeTreeat(0,0);
-    crearArbolesAleatorios(100);
-    
-    function crearCampoAleatorio(numArboles) {
-        for(var i =0; i< numArboles; i ++){
-            var x = Math.random()*1000;
-            var z = Math.random()*1000;
-            makeTreeat(x,z);
-        }
-    }
-    
-   
-    
+
+crearCampoArboles(-5000,-5000,5000,5000,900);
 
 document.addEventListener('keydown', teclaApretada);
 
