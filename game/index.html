@@ -71,7 +71,8 @@
         
         
         var circulo = new THREE.CircleGeometry(300);
-        var invisible = new THREE.MeshNormalMaterial();
+        var invisible = new THREE.MeshNormalMaterial({ transparent:
+                                                     true, opacity: 1});
         var limite = new THREE.Mesh(circulo, invisible); 
         limite.position.y = -100;
         limite.rotation.x = -Math.PI/2;
