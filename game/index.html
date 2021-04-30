@@ -21,6 +21,8 @@
 
   // ******** START CODING ON THE NEXT LINE ********
     
+    listaColision = [];
+    
     var body = new THREE.SphereGeometry(100);
     var cover = new THREE.MeshNormalMaterial(flat);
     var avatar= new THREE.Mesh(body, cover);
@@ -66,6 +68,17 @@
         copa_textura.position.y=175;
         tronco_sienna.add(copa_textura);
         tronco_sienna.position.set(x, -75, z);
+        
+        
+        var circulo = new THREE.CircleGeometry(300);
+        var invisible = new THREE.MeshNormalMaterial();
+        var limite = new THREE.Mesh(circulo, invisible); 
+        limite.position.y = -100;
+        limite.rotation.x = -Math.PI/2;
+        tronco_sienna.add(limite);
+         listaColision.push(limite);
+        
+        
         scene.add(tronco_sienna);
     }
     
@@ -88,6 +101,7 @@
             
                     } 
     }
+    
 
 crearCampoArboles(-5000,-5000,5000,5000,900);
 
@@ -130,8 +144,29 @@ marcador.rotation.y -= 0.01;
         
         marcador.position.z -= 20*Math.sin(direccion);
         marcador.position.x += 20*Math.cos(direccion);
+        
+       if(avatarColisiona()) {
+           
+        marcador.position.z -= -20*Math.sin(direccion);
+        marcador.position.x += -20*Math.cos(direccion);
+        
+           
+       }
     }
     
+    function avatarColisiona(){
+        return false;
+    }
+    //objeto.position.x += inc_x;
+    //objeto.position.z += inc_z;
+
+   //if(hayColision()) {
+    //objeto.position.x -= inc_x;
+    //objeto.position.z -= inc_z;
+
+    //}
+    
+
     
 function animate() {
 requestAnimationFrame(animate);
