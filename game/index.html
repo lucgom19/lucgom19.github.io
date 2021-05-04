@@ -31,6 +31,7 @@
     scene.add(marcador);
     //scene.add(avatar);
     marcador.add(avatar);
+    marcador.position.x= 500;
     
     
     var hand = new THREE.SphereGeometry(50);
@@ -77,7 +78,8 @@
         limite.position.y = -100;
         limite.rotation.x = -Math.PI/2;
         tronco_sienna.add(limite);
-         listaColision.push(limite);
+        
+        listaColision.push(limite);
         
         
         scene.add(tronco_sienna);
@@ -112,10 +114,10 @@ function teclaApretada(e) {
 let codigo = e.code;
     
 if (codigo == 'KeyA'){
-marcador.position.z += 5;
+    //marcador.position.z += 5;
 }
 if (codigo== 'KeyQ'){
-    avanzar(marcador.rotation.y);
+    avanzar(marcador.rotation.y+Math.PI);
 //marcador.position.z -= 5;
 
 }
@@ -156,16 +158,19 @@ marcador.rotation.y -= 0.01;
     }
     
     function avatarColisiona(){
-        return false;
-    }
-    //objeto.position.x += inc_x;
-    //objeto.position.z += inc_z;
-
-   //if(hayColision()) {
-    //objeto.position.x -= inc_x;
-    //objeto.position.z -= inc_z;
-
-    //}
+        var vector = new THREE.Vector3(0,-1,0);
+        var raycaster = new THREE.Raycaster(marcador.position,vector);
+        
+        var intersectados = raycaster.intersectObjects(listaColision);
+        
+        if (intersectados.length >0 ) {
+            return true;
+        }
+        else {
+            return false;
+        }
+     }
+    
     
 
     
